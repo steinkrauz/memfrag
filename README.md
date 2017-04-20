@@ -16,6 +16,8 @@ memfrag -m <MODE> filename
 The values of MODE are 'c' and 's'. 'c' is for character array case, 's' is for std::string case, which is currently not implemented
 
 ### Example ###
+
+```
 [stk@dev03 memfrag]$ ./memfrag -m c test.txt 
 Char test selected
 Total lines: 4354
@@ -26,5 +28,6 @@ Replace table has 1451 entries
 First ten allocations mean time: 180ms
 Last ten allocations mean time: 319ms
 VM: 50364; RSS: 48976
+```
 
-Memory consumtion grew in ten ducking times, and time needed to allocate new strings nearly doubled. Nuff said.
+Memory consumption grew in ten ducking times, and time needed to allocate new strings nearly doubled. Nuff said.
