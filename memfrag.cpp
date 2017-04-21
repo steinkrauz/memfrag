@@ -2,6 +2,8 @@
 #include <cstdlib>
 #include <ctime>
 #include <chrono>
+#include <unistd.h>
+#include <stdlib.h>
 #include "testers.h"
 
 using namespace std;
@@ -17,28 +19,58 @@ void print_usage(const char *msg)
 
 int main(int argc, char *argv[])
 {
-	if (argc!=4) {
-	    print_usage("Wrong number of parameters");
-	    return 0;
-	}
-	BaseTester *t;
+    BaseTester *t = NULL;
 
-	switch (argv[2][0]) {
-	    case 'c':
-	            t = new CharTester();
-	            cout<<"Char test selected\n";
-	            break;
-	    case 's':
-	            t = new StringTester();
-	            cout<<"String test selected\n";
-	            break;
-	    default:
-	            print_usage("Wrong mode");
-	            return 0;
+	int optc;
+	int runs = -1;
+	int koeff = -1.0;
+    while((optc=getopt(argc, argv, "m:r:k:")) != -1) {
+        switch (optc) {
+            case 'm':
+                switch(*optarg) {
+                    case 'c':
+                        t = new CharTester();
+                        cout<<"Char test selected\n";
+                        break;
+                    case 's':
+                        t = new StringTester();
+                        cout<<"String test selected\n";
+                        break;
+                    default:
+                        print_usage("Wrong mode");
+                        return 0;
+                    }
+                break;
+            case 'r':
+                runs = atoi(optarg);
+                break;
+            case 'k':
+                koeff = atof(optarg);
+                break;
+            default: 
+                print_usage("");
+        }
     }
+
+    char *filename = (argv+optind)[0];
+
+    if (t == NULL) {
+        print_usage("You must select a mode");
+        return 0;
+    }
+
+    if (filename == NULL) {
+        print_usage("No file name found");
+        return 0;
+    }
+
+    if (runs>0) t->set_runs(runs);
+    if (koeff>0) t->set_koeff(koeff);
+
+
     std::srand(unsigned(std::time(0)));
 
-    if (!t->load(argv[3])) {
+    if (!t->load(filename)) {
         return 1;
     }
     process_mem_usage();
