@@ -25,7 +25,7 @@ bool StringTester::load(char *filename)
     if (!infile.is_open()) return false;
     load_file_info(infile);
 
-    buf_str = new char[(int)(koeff*mstrlen+0.5)];
+    buf_str = new char[(int)(koeff*mstrlen+0.5)+1];
 
     time_span = std::chrono::nanoseconds::zero();
     while(!infile.eof()) {
