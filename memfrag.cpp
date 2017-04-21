@@ -13,8 +13,13 @@ void process_mem_usage();
 void print_usage(const char *msg) 
 {
     cout<<msg<<"\nUSAGE:\n";
-    cout<<"\tmemfrag -m <MODE> filename\n\n";
-    cout<<"Where MODE can be either 's' or 'c'\n";
+    cout<<"\tmemfrag -m <MODE> [OPTION] FILE\n";
+    cout<<"\n\
+    -m         select a tester to use. MODE can be either 's' or 'c'.\n\
+               This parameter is mandatory.\n\
+    -r         run tester for RUNS times. Default is 1000.\n\
+    -k         size koefficient for max size of new strings. Default value is 2.0\n\
+";
 }
 
 int main(int argc, char *argv[])
@@ -49,6 +54,7 @@ int main(int argc, char *argv[])
                 break;
             default: 
                 print_usage("");
+                return 0;
         }
     }
 
