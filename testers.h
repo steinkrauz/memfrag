@@ -26,6 +26,7 @@ class BaseTester
     virtual void perform_replaces() = 0;
     void run();
     void set_koeff(double k);
+    void set_runs(int num);
 };
 
 class CharTester : public BaseTester 
@@ -33,7 +34,7 @@ class CharTester : public BaseTester
     private:
     char    **data;
     public:
-    CharTester(int num=1000);
+    CharTester();
     bool load(char *filename);
     void perform_replaces();
     virtual ~CharTester();
@@ -45,7 +46,7 @@ class StringTester : public BaseTester
     std::vector<std::string> data;
     char    *buf_str;
     public:
-    StringTester(int num=1000);
+    StringTester();
     bool load(char *filename);
     void perform_replaces();
     virtual ~StringTester();

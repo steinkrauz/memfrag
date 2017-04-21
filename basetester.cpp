@@ -57,4 +57,9 @@ void BaseTester::set_koeff(double k)
 {
     koeff = k;
 }
+
+void BaseTester::set_runs(int num)
+{
+    runs = num;
+}
 // vim: ai:ci:si:ts=4:sw=4:et

@@ -7,13 +7,13 @@
 using namespace std;
 
 
-CharTester::CharTester(int num)
+CharTester::CharTester()
 {
     len = 0;
     mstrlen = -1;
     data = NULL;
     replace_table = NULL;
-    runs = num;
+    runs = 1000;
     results = new int[runs];
     is_batch = false;
     koeff = 2.0;
