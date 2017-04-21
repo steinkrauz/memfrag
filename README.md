@@ -1,6 +1,6 @@
 # Memory fragmentation tester #
 
-This is a simple and dumb program to test effects of memory fragmentation. The main idea is to check is an array of immutable strings is OK as a backend for a text editor.
+This is a simple and dumb program to test effects of a memory fragmentation. The main idea is to check if an array of immutable strings is OK as a backend for a text editor.
 
 ### Algorithm ###
 
@@ -17,6 +17,8 @@ memfrag -m <MODE> [OPTION] FILE
                This parameter is mandatory.
     -r         run tester for RUNS times. Default is 1000.
     -k         size coefficient for max size of new strings. Default value is 2.0
+
+Mode 'c' means the tester will use an array of char arrays as a storage. In mode 's' the storage is a vector of string, both from STL. As an implementation for each mode is slightly different, you should not compare absolute timing values from different test modes.
 
 ### Examples ###
 
@@ -36,7 +38,7 @@ VM: 50108.00; RSS: 48764.00
 ```
 Memory consumption grew in ten ducking times, and time needed to allocate new strings visibly increased. Nuff said.
 
-'''
+```
 [stk@dev03 memfrag]$ ./memfrag -m s -r 1300 -k 1.5 test.txt 
 String test selected
 Total lines: 4354
@@ -48,6 +50,6 @@ First ten allocations mean time: 189ms
 Last ten allocations mean time: 2043ms
 Allocation time changes by 1080%
 VM: 6008.00; RSS: 4388.00
-'''
+```
 
 STL library can save you from memory consumption, but in the end bad design with catch you: just add some more runs.
