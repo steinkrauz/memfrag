@@ -4,6 +4,8 @@
 
 #include <fstream>
 #include <iostream>
+#include <vector>
+#include <string>
 
 class BaseTester 
 {
@@ -14,6 +16,7 @@ class BaseTester
     int     table_size;
     int     *results;
     int     runs;
+    double  koeff;
     bool    is_batch;
     std::chrono::nanoseconds time_span;
     void load_file_info(std::ifstream& infile);
@@ -22,6 +25,7 @@ class BaseTester
     void new_replace_table();
     virtual void perform_replaces() = 0;
     void run();
+    void set_koeff(double k);
 };
 
 class CharTester : public BaseTester 
@@ -33,6 +37,18 @@ class CharTester : public BaseTester
     bool load(char *filename);
     void perform_replaces();
     virtual ~CharTester();
+};
+
+class StringTester : public BaseTester 
+{
+    private:
+    std::vector<std::string> data;
+    char    *buf_str;
+    public:
+    StringTester(int num=1000);
+    bool load(char *filename);
+    void perform_replaces();
+    virtual ~StringTester();
 };
 
 // vim: ai:ci:ts=4:sw=4:et

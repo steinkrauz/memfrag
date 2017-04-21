@@ -29,8 +29,8 @@ int main(int argc, char *argv[])
 	            cout<<"Char test selected\n";
 	            break;
 	    case 's':
-	            cout<<"Sorry, not implemented yet\n";
-	            exit(0);
+	            t = new StringTester();
+	            cout<<"String test selected\n";
 	            break;
 	    default:
 	            print_usage("Wrong mode");

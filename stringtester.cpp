@@ -15,6 +15,7 @@ StringTester::StringTester(int num)
     runs = num;
     results = new int[runs];
     is_batch = false;
+    koeff = 2.0;
 }
 
 
@@ -44,7 +45,7 @@ void StringTester::perform_replaces()
     time_span = std::chrono::nanoseconds::zero();
     for (int i=0; i<table_size; ++i) {
         string line;
-        int slen = std::rand()%static_cast<int>(std::trunc(2.0*mstrlen));
+        int slen = std::rand()%static_cast<int>(std::trunc(koeff*mstrlen));
         memset(buf_str, 'a', slen);
         buf_str[slen] = '\0';
         line = buf_str;

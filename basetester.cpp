@@ -53,5 +53,8 @@ void BaseTester::run()
     is_batch = false;
 }
 
-
+void BaseTester::set_koeff(double k)
+{
+    koeff = k;
+}
 // vim: ai:ci:si:ts=4:sw=4:et

@@ -16,6 +16,7 @@ CharTester::CharTester(int num)
     runs = num;
     results = new int[runs];
     is_batch = false;
+    koeff = 2.0;
 }
 
 
@@ -55,7 +56,7 @@ void CharTester::perform_replaces()
    }
     time_span = std::chrono::nanoseconds::zero();
     for (int i=0; i<table_size; ++i) {
-        int slen = std::rand()%static_cast<int>(std::trunc(2.0*mstrlen));
+        int slen = std::rand()%static_cast<int>(std::trunc(koeff*mstrlen));
         auto start = std::chrono::high_resolution_clock::now();
         data[replace_table[i]] = new char[slen];
         auto end = std::chrono::high_resolution_clock::now();
