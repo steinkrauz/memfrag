@@ -7,6 +7,12 @@
 #include <vector>
 #include <string>
 
+
+//  Defaults definitions
+
+#define DEFAULT_RUNS    1000
+#define DEFAULT_KOEF    2.0
+
 class BaseTester 
 {
     protected:

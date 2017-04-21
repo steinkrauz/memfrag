@@ -13,10 +13,10 @@ CharTester::CharTester()
     mstrlen = -1;
     data = NULL;
     replace_table = NULL;
-    runs = 1000;
+    runs = DEFAULT_RUNS;
     results = new int[runs];
     is_batch = false;
-    koeff = 2.0;
+    koeff = DEFAULT_KOEF;
 }
 
 

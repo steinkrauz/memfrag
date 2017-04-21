@@ -12,10 +12,10 @@ StringTester::StringTester()
     len = 0;
     mstrlen = -1;
     replace_table = NULL;
-    runs = 1000;
+    runs = DEFAULT_RUNS;
     results = new int[runs];
     is_batch = false;
-    koeff = 2.0;
+    koeff = DEFAULT_KOEF;
 }
 
 
