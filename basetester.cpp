@@ -1,4 +1,5 @@
 #include <chrono>
+#include <iomanip>
 #include "testers.h"
 
 using namespace std;
@@ -41,15 +42,17 @@ void BaseTester::run()
         perform_replaces();
         results[i] = time_span.count()/1000;
     }
-    int mean=0;
+    int mean0, mean1;
+    mean0 = mean1 = 0;
     for (int i=0; i<10; i++) {
-        mean += results[i];
+        mean0 += results[i];
     }
-    cout<<"First ten allocations mean time: "<<mean/10<<"ms\n";
+    cout<<"First ten allocations mean time: "<<mean0/10<<"ms\n";
     for (int i=runs-10; i<runs; i++) {
-        mean += results[i];
+        mean1 += results[i];
     }
-    cout<<"Last ten allocations mean time: "<<mean/10<<"ms\n";
+    cout<<"Last ten allocations mean time: "<<mean1/10<<"ms\n";
+    cout<<"Allocation time changes by "<<fixed<<setprecision(2)<<(mean1*100/mean0)<<"%\n";
     is_batch = false;
 }
 
