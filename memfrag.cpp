@@ -82,6 +82,7 @@ int main(int argc, char *argv[])
     process_mem_usage();
     t->run();
     process_mem_usage();
+    delete t;
 }
 
 // vim: ai:ci:ts=4:sw=4:et

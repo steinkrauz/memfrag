@@ -13,7 +13,6 @@ StringTester::StringTester()
     mstrlen = -1;
     replace_table = NULL;
     runs = DEFAULT_RUNS;
-    results = new int[runs];
     is_batch = false;
     koeff = DEFAULT_KOEF;
 }

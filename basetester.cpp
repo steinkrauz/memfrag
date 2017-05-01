@@ -37,6 +37,7 @@ void BaseTester::new_replace_table()
 void BaseTester::run()
 {
     is_batch = true;
+    results = new int[runs];
     for(int i=0; i<runs; i++) {
         new_replace_table();
         perform_replaces();
@@ -64,5 +65,9 @@ void BaseTester::set_koeff(double k)
 void BaseTester::set_runs(int num)
 {
     runs = num;
+}
+
+BaseTester::~BaseTester()
+{
 }
 // vim: ai:ci:si:ts=4:sw=4:et

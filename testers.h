@@ -33,6 +33,7 @@ class BaseTester
     void run();
     void set_koeff(double k);
     void set_runs(int num);
+    virtual ~BaseTester();
 };
 
 class CharTester : public BaseTester 

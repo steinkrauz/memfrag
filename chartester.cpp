@@ -14,7 +14,6 @@ CharTester::CharTester()
     data = NULL;
     replace_table = NULL;
     runs = DEFAULT_RUNS;
-    results = new int[runs];
     is_batch = false;
     koeff = DEFAULT_KOEF;
 }
@@ -50,7 +49,7 @@ void CharTester::perform_replaces()
 {
    for (int i=0; i<table_size; ++i) {
        if (data[replace_table[i]]!=NULL) {
-            delete data[replace_table[i]];
+            delete [] data[replace_table[i]];
             data[replace_table[i]] = NULL;
        }
    }
@@ -58,7 +57,8 @@ void CharTester::perform_replaces()
     for (int i=0; i<table_size; ++i) {
         int slen = std::rand()%static_cast<int>(std::trunc(koeff*mstrlen));
         auto start = std::chrono::high_resolution_clock::now();
-        data[replace_table[i]] = new char[slen];
+        if (data[replace_table[i]] == NULL)
+            data[replace_table[i]] = new char[slen];
         auto end = std::chrono::high_resolution_clock::now();
         time_span += std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
     }
